@@ -67,5 +67,5 @@ impl Default for TextGenerationConfig {
 }
 
 fn default_text_model_id() -> String {
-    ClaudeModel::Claude35Sonnet.as_str().to_owned()
+    ClaudeModel::Claude37SonnetLatest.as_str().to_owned()
 }

@@ -1,3 +1,5 @@
+# Added more Cluad Sonnet models
+
 # (2024-12-12) Version 1.4.1
 
 - (**Bugfix**) Fix detection for whether the bot is the last member in a room, to avoid incorrectly leaving multi-user rooms that have had at least one person `leave` ([3c47d40781](https://github.com/etkecc/baibot/commit/3c47d407819aa9c0121117a411858238724f06da))
