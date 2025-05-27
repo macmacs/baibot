@@ -4,6 +4,8 @@ use std::str::FromStr;
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub enum ClaudeModel {
+    #[serde(rename = "claude-sonnet-4-20250514")]
+    ClaudeSonnet420250514,
     #[serde(rename = "claude-3-7-sonnet-20250219")]
     Claude37Sonnet20250219,
     #[serde(rename = "claude-3-7-sonnet-latest")]
@@ -25,6 +27,7 @@ pub enum ClaudeModel {
 impl ClaudeModel {
     pub fn as_str(&self) -> &'static str {
         match self {
+            Self::ClaudeSonnet420250514 => "claude-sonnet-4-20250514",
             Self::Claude37Sonnet20250219 => "claude-3-7-sonnet-20250219",
             Self::Claude37SonnetLatest => "claude-3-7-sonnet-latest",
             Self::Claude35SonnetLatest => "claude-3-5-sonnet-latest",
@@ -48,6 +51,7 @@ impl FromStr for ClaudeModel {
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         match s {
+            "claude-sonnet-4-20250514" => Ok(Self::ClaudeSonnet420250514),
             "claude-3-7-sonnet-20250219" => Ok(Self::Claude37Sonnet20250219),
             "claude-3-7-sonnet-latest" => Ok(Self::Claude37SonnetLatest),
             "claude-3-5-sonnet-latest" => Ok(Self::Claude35SonnetLatest),
@@ -78,6 +82,10 @@ mod tests {
 
     #[test]
     fn should_serialize_to_correct_model_names() {
+        assert_eq!(
+            ClaudeModel::ClaudeSonnet420250514.as_str(),
+            "claude-sonnet-4-20250514",
+        );
         assert_eq!(
             ClaudeModel::Claude37Sonnet20250219.as_str(),
             "claude-3-7-sonnet-20250219",
@@ -111,6 +119,10 @@ mod tests {
 
     #[test]
     fn should_deserialize_to_correct_models() {
+        assert_eq!(
+            ClaudeModel::ClaudeSonnet420250514,
+            ClaudeModel::from_str("claude-sonnet-4-20250514").unwrap(),
+        );
         assert_eq!(
             ClaudeModel::Claude37Sonnet20250219,
             ClaudeModel::from_str("claude-3-7-sonnet-20250219").unwrap(),
